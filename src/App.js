@@ -6,6 +6,7 @@ import Notification from './pages/Notification/Notification';
 import Profile from './pages/Profile/Profile';
 import { ToastContainer } from "react-toastify";
 import NewsDetails from './pages/NewsDetails/NewsDetails';
+import Post from './pages/Post/Post';
 
 function App() {
   return (
@@ -17,11 +18,10 @@ function App() {
         <Route path="/notification" element={<Notification />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/newsDetails" element={<NewsDetails />} />
+        <Route path="/post" element={<Post />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-
-// http://localhost:3000/newsDetails?title=Uncle%20chukwuma&image=https%3A%2F%2Fres.cloudinary.com%2Fdypgxulgp%2Fimage%2Fupload%2Fv1740339015%2Fupload_1740339013478_cpsp5a.jpg&likes=0&content=Thanks%20for%20helping%20me%20&postId=67bb7748a726a4942f477494

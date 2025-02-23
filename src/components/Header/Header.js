@@ -35,8 +35,10 @@ export const Header = ({unreadCount}) => {
            <BiBell color='#333' size={25} />
         </Link>
 
-        <Link>
-          <BiEdit color='#333' size={25} />
+        <Link to={user ? "post" : "auth"}>
+          {user && user?.role === "admin" && (
+             <BiEdit color='#333' size={25} />
+          )}
         </Link>
         <Link to={user ? "/profile" : "/auth"} >
           {user ? <BiUser color='#333' size={25} /> : "Register"}
