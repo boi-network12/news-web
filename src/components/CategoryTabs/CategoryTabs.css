@@ -1,0 +1,64 @@
+.categoryContainer {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 0;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+    background: #fff;
+}
+
+/* Hide scrollbar for WebKit browsers on mobile & tablet */
+@media (max-width: 1024px) {
+    .categoryContainer::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .categoryContainer {
+        -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+        scrollbar-width: none; /* Hide scrollbar for Firefox */
+    }
+}
+
+/* Show scrollbar only on larger screens */
+@media (min-width: 1025px) {
+    .categoryContainer::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .categoryContainer::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 10px;
+    }
+
+    .categoryContainer::-webkit-scrollbar-track {
+        background: transparent;
+    }
+}
+
+.categoryItem {
+    padding: 10px 15px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 20px;
+    background: #e0e0e0;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+}
+
+.categoryItem:hover {
+    background: #ddd;
+}
+
+.activeCategory {
+    background: #333;
+    color: white;
+}
+
+.activeCategoryText {
+    font-weight: bold;
+}

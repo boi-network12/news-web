@@ -1,0 +1,133 @@
+/* Global styles */
+:root {
+    --primary-color: #333;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --background-color: #f8f9fa;
+    --text-color: #333;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background: var(--background-color);
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Notification container */
+  .notification-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 15px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 18px;
+  }
+  
+  .header button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  .notifications-list {
+    max-height: 700px;
+    overflow-y: auto;
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 20px;
+    color: var(--secondary-color);
+  }
+  
+  .notification-card {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .notification-card:hover {
+    background: rgba(0, 123, 255, 0.1);
+  }
+  
+  .notification-card.read {
+    background: #f1f1f1;
+  }
+  
+  .notification-content {
+    flex: 1;
+  }
+  
+  .notification-content h4 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--text-color);
+  }
+  
+  .notification-content p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: var(--secondary-color);
+  }
+  
+  .unread-indicator {
+    width: 10px;
+    height: 10px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+  
+  .green {
+    color: var(--success-color);
+  }
+  
+  .red {
+    color: var(--danger-color);
+  }
+  
+  /* Media Queries */
+  @media screen and (max-width: 600px) {
+    .notification-container {
+      width: 100%;
+    }
+  
+    .header {
+      font-size: 16px;
+      padding: 20px 10px;
+    }
+  
+    .notification-card {
+      padding: 10px;
+    }
+  
+    .notification-content h4 {
+      font-size: 14px;
+    }
+  
+    .notification-content p {
+      font-size: 12px;
+    }
+
+    .notifications-list {
+      max-height: 780px;
+    }
+  }
+  
