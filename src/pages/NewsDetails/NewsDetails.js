@@ -56,7 +56,7 @@ const NewsDetails = () => {
     navigate("/");
   };
 
-  const url = `/newsDetails?title=${encodeURIComponent(title)}&image=${encodeURIComponent(image)}&likes=${likes || 0}&content=${encodeURIComponent(content)}&postId=${postId}`;
+  const url = `/newsDetails?title=${title}&image=${image}&likes=${likes || 0}&content=${content}&postId=${postId}`;
 
   const handleShare = async () => {
     const shareMessage = `${window.location.origin}${encodeURIComponent(url)}`;
