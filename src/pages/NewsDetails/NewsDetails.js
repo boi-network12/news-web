@@ -7,6 +7,7 @@ import "./NewsDetails.css";
 import {  BiChevronLeft, BiEdit, BiSend, BiTrash } from "react-icons/bi";
 
 const NewsDetails = () => {
+  
   const location = useLocation();
   const { state } = location;
   const { user } = useContext(AuthContext);
@@ -21,6 +22,8 @@ const NewsDetails = () => {
   const content = state?.content || queryParams.get("content") || "No content available.";
   const postId = state?.postId || queryParams.get("postId");
   const author = state?.author || queryParams.get("postId");
+
+  //const ogImage = `https://news-web-wine.vercel.app/${image}` || `%PUBLIC_URL%/${image}`;
 
   const [liked, setLiked] = useState(likes > 0);
   const [showModal, setShowModal] = useState(false);
@@ -78,6 +81,8 @@ const NewsDetails = () => {
       console.error("Error updating post:", error);
     }
   };
+
+  
 
   return (
     <div className="news-details">
