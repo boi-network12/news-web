@@ -2,11 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './NewsCard.css';
 
-const NewsCard = ({ title, image, likes, content, postId }) => {
+const NewsCard = ({ title, image, likes, content, postId, author }) => {
+
+
   return (
     <Link 
         to="/newsDetails"
-        state={{ title, image, likes, content, postId }}
+        state={{ title, image, likes, content, postId, author }}
         className="news-card"
         >
       <div className="news-card__image-container">

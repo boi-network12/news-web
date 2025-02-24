@@ -2,27 +2,30 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { PostContext } from "../../context/PostContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import { FaHeart, FaRegHeart, FaShare, FaTrash, FaArrowLeft } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaArrowLeft } from "react-icons/fa";
 import "./NewsDetails.css";
+import { BiEdit, BiSend, BiTrash } from "react-icons/bi";
 
 const NewsDetails = () => {
   const location = useLocation();
   const {state} = location;
   const { user } = useContext(AuthContext);
-  const { likePost, dislikePost, deletePost } = useContext(PostContext);
+  const { likePost, dislikePost, deletePost, updatePost } = useContext(PostContext);
   const navigate = useNavigate();
 
   // Extract query parameters from URL
   const queryParams = new URLSearchParams(location.search);
-const title = state?.title || queryParams.get("title") || "No Title";
-const image = state?.image || queryParams.get("image");
-const likes = state?.likes || Number(queryParams.get("likes")) || 0;
-const content = state?.content || queryParams.get("content") || "No content available.";
-const postId = state?.postId || queryParams.get("postId");
+  const title = state?.title || queryParams.get("title") || "No Title";
+  const image = state?.image || queryParams.get("image");
+  const likes = state?.likes || Number(queryParams.get("likes")) || 0;
+  const content = state?.content || queryParams.get("content") || "No content available.";
+  const postId = state?.postId || queryParams.get("postId");
 
   // Now use `likes` safely after it is defined
   const [liked, setLiked] = useState(likes > 0)
-  
+  const [showModal, setShowModal] = useState(false);
+  const [editedTitle, setEditedTitle] = useState(title);
+  const [editedContent, setEditedContent] = useState(content);
   
 
   const handleLike = async () => {
@@ -63,6 +66,19 @@ const postId = state?.postId || queryParams.get("postId");
     }
   };
 
+  const handleEdit = () => {
+    setShowModal(true)
+  }
+
+  const handleSaveEdit = async () => {
+    try {
+      await updatePost(postId, { title: editedTitle, content: editedContent });
+      setShowModal(false);
+    } catch (error) {
+      console.error("Error updating post:", error);
+    }
+  };
+
   return (
     <div className="news-details">
       {/* Header */}
@@ -71,13 +87,18 @@ const postId = state?.postId || queryParams.get("postId");
           <FaArrowLeft size={20} /> Back
         </button>
         <div className="action-buttons">
-          {user?.role === "admin" && (
+          {user && (user?.role === "admin" || user?._id === state?.author) && (
             <button onClick={handleDelete} className="delete-button">
-              <FaTrash size={20} />
+              <BiTrash size={20} />
+            </button>
+          )}
+          {user && user?._id === state?.author && (
+            <button onClick={handleEdit}  className="share-button">
+              <BiEdit size={20} />
             </button>
           )}
           <button onClick={handleShare} className="share-button">
-            <FaShare size={20} />
+            <BiSend size={20} />
           </button>
         </div>
       </div>
@@ -100,6 +121,36 @@ const postId = state?.postId || queryParams.get("postId");
 
       {/* Content */}
       <p className="news-content">{content}</p>
+      {showModal && (
+        <div className="news-modal-overlay">
+          <div className="news-modal-content">
+            <button onClick={() => setShowModal(false)} className="news-modal-close">
+              ✖
+            </button>
+            <h3>Edit Post</h3>
+            <input
+              type="text"
+              value={editedTitle}
+              onChange={(e) => setEditedTitle(e.target.value)}
+              className="news-modal-input"
+            />
+            <textarea
+              value={editedContent}
+              onChange={(e) => setEditedContent(e.target.value)}
+              className="news-modal-textarea"
+            ></textarea>
+            <div className="news-modal-actions">
+              <button onClick={handleSaveEdit} className="news-modal-save">
+                Save
+              </button>
+              <button onClick={() => setShowModal(false)} className="news-modal-cancel">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };

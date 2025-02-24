@@ -142,3 +142,147 @@
     }
   }
   
+
+  /* Modal Styles */
+.news-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in forwards;
+}
+
+.news-modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+/* Close Button */
+.news-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #555;
+}
+
+.news-modal-close:hover {
+  color: #d9534f;
+}
+
+/* Input Fields */
+.news-modal-input,
+.news-modal-textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.news-modal-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Buttons */
+.news-modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.news-modal-save,
+.news-modal-cancel {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.news-modal-save {
+  background: #28a745;
+  color: white;
+  margin-right: 10px;
+}
+
+.news-modal-save:hover {
+  background: #218838;
+}
+
+.news-modal-cancel {
+  background: #dc3545;
+  color: white;
+}
+
+.news-modal-cancel:hover {
+  background: #c82333;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+  .news-modal-content {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .news-modal-input,
+  .news-modal-textarea {
+    font-size: 14px;
+  }
+
+  .news-modal-save,
+  .news-modal-cancel {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .news-modal-actions {
+    flex-direction: column;
+  }
+
+  .news-modal-save {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}

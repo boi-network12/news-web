@@ -27,6 +27,7 @@ const NewsToday = ({ posts, loading }) => {
                 likes: item.likeCount,
                 content: item.content,
                 postId: item._id,
+                author: item.author._id
               },
             })
           }

@@ -1,1 +1,3 @@
-export const API_URL = "http://192.168.81.4:5000"; 
+export const API_URL = "https://news-app-backend-ba5k.onrender.com"; 
+
+// https://news-app-backend-ba5k.onrender.com

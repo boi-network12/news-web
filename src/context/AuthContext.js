@@ -28,7 +28,6 @@ export const AuthProvider = ({ children }) => {
                 }
             } catch (error) {
                 console.error("Error fetching user details", error);
-                toast.error("Error fetching user")
             } finally {
                 setLoading(false);
             }
