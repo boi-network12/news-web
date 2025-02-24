@@ -59,7 +59,7 @@ const NewsDetails = () => {
   const url = `/newsDetails?title=${title}&image=${image}&likes=${likes || 0}&content=${content}&postId=${postId}`;
 
   const handleShare = async () => {
-    const shareMessage = `${window.location.origin}/${encodeURIComponent(url)}`;
+    const shareMessage = `${window.location.origin}${url}`;
     try {
       await navigator.clipboard.writeText(shareMessage);
       alert("Link copied to clipboard!");
