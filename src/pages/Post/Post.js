@@ -292,6 +292,7 @@ const styles = `
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
+    color: "#333";
   }
 
   .input-container {

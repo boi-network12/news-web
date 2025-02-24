@@ -2,13 +2,13 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { PostContext } from "../../context/PostContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import { FaHeart, FaRegHeart, FaArrowLeft } from "react-icons/fa";
+import { FaThumbsUp, FaThumbsDown } from "react-icons/fa"; // Updated icons
 import "./NewsDetails.css";
-import { BiEdit, BiSend, BiTrash } from "react-icons/bi";
+import {  BiChevronLeft, BiEdit, BiSend, BiTrash } from "react-icons/bi";
 
 const NewsDetails = () => {
   const location = useLocation();
-  const {state} = location;
+  const { state } = location;
   const { user } = useContext(AuthContext);
   const { likePost, dislikePost, deletePost, updatePost } = useContext(PostContext);
   const navigate = useNavigate();
@@ -20,17 +20,16 @@ const NewsDetails = () => {
   const likes = state?.likes || Number(queryParams.get("likes")) || 0;
   const content = state?.content || queryParams.get("content") || "No content available.";
   const postId = state?.postId || queryParams.get("postId");
+  const author = state?.author || queryParams.get("postId");
 
-  // Now use `likes` safely after it is defined
-  const [liked, setLiked] = useState(likes > 0)
+  const [liked, setLiked] = useState(likes > 0);
   const [showModal, setShowModal] = useState(false);
   const [editedTitle, setEditedTitle] = useState(title);
   const [editedContent, setEditedContent] = useState(content);
-  
 
   const handleLike = async () => {
     if (!user?._id) return; // Ensure user is logged in
-  
+
     try {
       await likePost(postId, user?._id);
       setLiked(true);
@@ -38,10 +37,10 @@ const NewsDetails = () => {
       console.error("Error liking post:", error);
     }
   };
-  
+
   const handleDislike = async () => {
     if (!user?._id) return;
-  
+
     try {
       await dislikePost(postId, user?._id);
       setLiked(false);
@@ -49,7 +48,6 @@ const NewsDetails = () => {
       console.error("Error disliking post:", error);
     }
   };
-  
 
   const handleDelete = async () => {
     await deletePost(postId);
@@ -69,8 +67,8 @@ const NewsDetails = () => {
   };
 
   const handleEdit = () => {
-    setShowModal(true)
-  }
+    setShowModal(true);
+  };
 
   const handleSaveEdit = async () => {
     try {
@@ -86,7 +84,7 @@ const NewsDetails = () => {
       {/* Header */}
       <div className="news-header">
         <button onClick={() => navigate(-1)} className="back-button">
-          <FaArrowLeft size={20} /> Back
+          <BiChevronLeft size={25} /> 
         </button>
         <div className="action-buttons">
           {user && (user?.role === "admin" || user?._id === state?.author) && (
@@ -94,8 +92,8 @@ const NewsDetails = () => {
               <BiTrash size={20} />
             </button>
           )}
-          {user && user?._id === state?.author && (
-            <button onClick={handleEdit}  className="share-button">
+          {user && user?._id === author && (
+            <button onClick={handleEdit} className="share-button">
               <BiEdit size={20} />
             </button>
           )}
@@ -115,11 +113,17 @@ const NewsDetails = () => {
       <h2 className="news-title">{title}</h2>
       <p className="likes-count">{likes} likes</p>
 
-      {/* Like Button */}
-      <button className="like-button" onClick={liked ? handleDislike : handleLike}>
-        {liked ? <FaHeart className="liked" /> : <FaRegHeart className="not-liked" />}
-        {liked ? "Unlike" : "Like"}
-      </button>
+      {/* Like/Dislike Buttons */}
+      <div className="like-dislike-buttons">
+        <button className="like-button" onClick={handleLike}>
+          <FaThumbsUp className={liked ? "liked" : "not-liked"} />
+          Like
+        </button>
+        <button className="like-button" onClick={handleDislike}>
+          <FaThumbsDown className={liked ? "not-liked" : "liked"} />
+          Unlike
+        </button>
+      </div>
 
       {/* Content */}
       <p className="news-content">{content}</p>
@@ -152,7 +156,6 @@ const NewsDetails = () => {
           </div>
         </div>
       )}
-
     </div>
   );
 };
