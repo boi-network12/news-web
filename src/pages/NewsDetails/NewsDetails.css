@@ -285,3 +285,33 @@
     margin-bottom: 10px;
   }
 }
+
+.like-dislike-buttons {
+  display: flex;
+  gap: 10px; /* Space between the buttons */
+  margin: 10px 0;
+}
+
+.like-button, .dislike-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s;
+}
+
+.like-button:hover, .dislike-button:hover {
+  background-color: #e0e0e0;
+}
+
+.liked {
+  color: #007bff; /* Blue for liked state */
+}
+
+.not-liked {
+  color: #888; /* Gray for not-liked state */
+}
