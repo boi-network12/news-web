@@ -56,8 +56,10 @@ const NewsDetails = () => {
     navigate("/");
   };
 
+  const url = `/newsDetails?title=${encodeURIComponent(title)}&image=${encodeURIComponent(image)}&likes=${likes || 0}&content=${encodeURIComponent(content)}&postId=${postId}`;
+
   const handleShare = async () => {
-    const shareMessage = `${title}\n\n${content}\n\nRead more: ${window.location.origin}/newsDetails/${postId}`;
+    const shareMessage = `${window.location.origin}${encodeURIComponent(url)}`;
     try {
       await navigator.clipboard.writeText(shareMessage);
       alert("Link copied to clipboard!");

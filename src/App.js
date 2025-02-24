@@ -7,6 +7,7 @@ import Profile from './pages/Profile/Profile';
 import { ToastContainer } from "react-toastify";
 import NewsDetails from './pages/NewsDetails/NewsDetails';
 import Post from './pages/Post/Post';
+import PrivateRoute from './Private/PrivateRoutes';
 
 function App() {
   return (
@@ -15,10 +16,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
-        <Route path="/notification" element={<Notification />} />
-        <Route path="/profile" element={<Profile />} />
         <Route path="/newsDetails" element={<NewsDetails />} />
-        <Route path="/post" element={<Post />} />
+
+
+        <Route path="/post" element={<PrivateRoute element={<Post />} />} />
+        <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
+        <Route path="/notification" element={<PrivateRoute element={<Notification />} />} />
       </Routes>
     </Router>
   );

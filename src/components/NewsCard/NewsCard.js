@@ -16,7 +16,7 @@ const NewsCard = ({ title, image, likes, content, postId, author }) => {
       </div>
       <div className="news-card__content">
         <h3 className="news-card__title">{title}</h3>
-        <p className="news-card__description">{content.slice(0, 100)}...</p>
+        <p className="news-card__description">{content.slice(0, 80)}...</p>
         <div className="news-card__footer">
           <span className="news-card__likes">❤️ {likes}</span>
         </div>

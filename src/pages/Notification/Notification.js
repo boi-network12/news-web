@@ -100,7 +100,11 @@ const Notification = () => {
               )}
               <div className="notification-content">
                 <h4>{item.title}</h4>
-                <p>{item.message}</p>
+                <p>
+                    {item.message.split(" ").length > 10
+                      ? item.message.split(" ").slice(0, 10).join(" ") + "..."
+                      : item.message}
+                </p>
               </div>
               {!item.read && !selectionMode && <div className="unread-indicator" />}
             </div>

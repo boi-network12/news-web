@@ -1,12 +1,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./NewsToday.css";
+import { ClipLoader } from "react-spinners";
 
 const NewsToday = ({ posts, loading }) => {
   const navigate = useNavigate();
 
   if (loading) {
-    return <p className="loading">Loading posts...</p>;
+    return (
+      <p className="loading">
+        <ClipLoader size={30} color="#333" />
+      </p>
+    )
   }
 
   const sortedPosts = posts

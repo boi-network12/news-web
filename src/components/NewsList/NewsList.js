@@ -2,11 +2,8 @@ import React from 'react'
 import NewsCard from '../NewsCard/NewsCard'
 import "./NewsList.css"
 
-const NewsList = ({ posts, loading }) => {
+const NewsList = ({ posts }) => {
 
-    if (loading) {
-        return <p> Loading posts...</p>
-      }
 
       const calculateScore = (post) => {
           const likeCount = post.likeCount.length * 5;
