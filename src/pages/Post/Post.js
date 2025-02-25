@@ -140,10 +140,10 @@ export default function Post() {
   return (
     <div className="post-container">
       <div className="header">
-        <button onClick={() => router.back()} className="back-button">
+        <button onClick={() => router.back()} className="back-button-auth">
           ←
         </button>
-        <button onClick={handleSubmit} className="post-button">
+        <button onClick={handleSubmit} className="post-button-auth">
           Post
         </button>
       </div>
@@ -287,7 +287,7 @@ const styles = `
     background-color: white;
   }
 
-  .back-button, .post-button {
+  .back-button-auth, .post-button-auth {
     background: none;
     border: none;
     font-size: 1.5rem;
