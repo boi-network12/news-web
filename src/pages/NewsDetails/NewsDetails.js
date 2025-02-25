@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { PostContext } from "../../context/PostContext";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -87,13 +87,38 @@ const NewsDetails = () => {
     return text.split(urlRegex).map((part, index) =>
       urlRegex.test(part) ? (
         <a key={index} href={part} target="_blank" rel="noopener noreferrer" style={{ color: "blue" }}>
-          {part}
+          <LinkPreview key={index} url={part}/>
         </a>
       ) : (
-        part
+        <span key={index}>{part}</span>
       )
     );
   };
+
+  const LinkPreview = ({ url }) => {
+    const [meta, setMeta] = useState(null);
+
+    useEffect(() => {
+      fetch(`https://opengraph.io/api/1.1/site/${encodeURIComponent(url)}?app_id=c3c39fda-8b93-4459-9f5b-fcafda1ed3d9`)
+      .then((res) => res.json())
+      .then((data) => setMeta(data.openGraph))
+      .catch((err) => console.error("Error fetching preview:", err));
+    },[url])
+
+    return meta ? (
+      <div className="link-preview">
+        <a href={url} target="_blank" rel="noopener noreferrer" className="link-preview-link">
+          <img src={meta.image} alt={meta.title} className="link-preview-image" />
+          <h4 className="link-preview-title">{meta.title}</h4>
+          <p className="link-preview-description">{meta.description}</p>
+        </a>
+      </div>
+    ) : (
+      <a href={url} target="_blank" rel="noopener noreferrer" className="link-preview-fallback">
+        {url}
+      </a>
+    );
+  }
 
   return (
     <div className="news-details">
