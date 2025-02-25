@@ -11,7 +11,7 @@ const NewsToday = ({ posts, loading }) => {
       <p className="loading">
         <ClipLoader size={30} color="#333" />
       </p>
-    )
+    );
   }
 
   const sortedPosts = posts
@@ -32,12 +32,13 @@ const NewsToday = ({ posts, loading }) => {
                 likes: item.likeCount,
                 content: item.content,
                 postId: item._id,
-                author: item.author._id
+                author: item.author._id,
               },
             })
           }
         >
           <img src={item.image} alt={item.title} className="news-image" />
+          <div className="news-title">{item.title}</div>
         </div>
       ))}
     </div>
