@@ -82,7 +82,18 @@ const NewsDetails = () => {
     }
   };
 
-  
+  const renderContent = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.split(urlRegex).map((part, index) =>
+      urlRegex.test(part) ? (
+        <a key={index} href={part} target="_blank" rel="noopener noreferrer" style={{ color: "blue" }}>
+          {part}
+        </a>
+      ) : (
+        part
+      )
+    );
+  };
 
   return (
     <div className="news-details">
@@ -131,7 +142,8 @@ const NewsDetails = () => {
       </div>
 
       {/* Content */}
-      <p className="news-content">{content}</p>
+      <p className="news-content">{renderContent(content)}</p>
+
       {showModal && (
         <div className="news-modal-overlay">
           <div className="news-modal-content">
