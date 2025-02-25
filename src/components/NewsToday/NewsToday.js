@@ -19,11 +19,11 @@ const NewsToday = ({ posts, loading }) => {
     .slice(0, 5);
 
   return (
-    <div className="news-container">
+    <div className="newsToday-container">
       {sortedPosts.map((item, index) => (
         <div
           key={index}
-          className="news-item"
+          className="newsToday-item"
           onClick={() =>
             navigate("/newsDetails", {
               state: {
@@ -37,8 +37,8 @@ const NewsToday = ({ posts, loading }) => {
             })
           }
         >
-          <img src={item.image} alt={item.title} className="news-image" />
-          <div className="news-title">{item.title}</div>
+          <img src={item.image} alt={item.title} className="newsToday-image" />
+          <div className="newsToday-title">{item.title}</div>
         </div>
       ))}
     </div>
