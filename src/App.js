@@ -29,8 +29,8 @@ function App() {
 
         <Route path='*' element={<NotFound />} />
 
-        <ScrollToTop/>
       </Routes>
+        <ScrollToTop/>
     </Router>
   );
 }
