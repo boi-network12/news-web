@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import NewsDetails from './pages/NewsDetails/NewsDetails';
 import Post from './pages/Post/Post';
 import PrivateRoute from './Private/PrivateRoutes';
+import DeveloperApi from './pages/API/DeveloperApi';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/post" element={<PrivateRoute element={<Post />} />} />
         <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
         <Route path="/notification" element={<PrivateRoute element={<Notification />} />} />
+        <Route path="/developer-api" element={<PrivateRoute element={<DeveloperApi />} />} />
       </Routes>
     </Router>
   );
