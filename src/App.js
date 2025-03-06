@@ -10,6 +10,7 @@ import Post from './pages/Post/Post';
 import PrivateRoute from './Private/PrivateRoutes';
 import DeveloperApi from './pages/API/DeveloperApi';
 import NotFound from './components/NotFound/NotFound';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
         <Route path="/developer-api" element={<PrivateRoute element={<DeveloperApi />} />} />
 
         <Route path='*' element={<NotFound />} />
+
+        <ScrollToTop/>
       </Routes>
     </Router>
   );
